@@ -49,5 +49,7 @@ sgg --title '$f(x) = x$ versus $f(x) = x^{2}$' -y '$f(x)$' -x '$x$' -s '-' ' --'
 #+END_SRC
 
 *NOTE*: If you are reading this file in PyPi you will be not able to see the png file, so go to the [[https://github.com/thiagotps/sgg][github repository]] .
+
 The result are shown below :
+
 [[file:out.png]]
