@@ -7,10 +7,9 @@ os.system("pandoc README.org -t gfm -o README.md")
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-# NOTE: Testing ....
 setuptools.setup(
     name="sgg",
-    version="0.0.4",
+    version="0.0.1",
     author="Thiago T. P. Silva",
     author_email="thiagoteodoro501@gmail.com",
     description="Simple Graph Generator",

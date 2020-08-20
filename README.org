@@ -1,5 +1,6 @@
 #+TITLE: Simple Graph Generator
 
+[[https://opensource.org/licenses/MIT][https://img.shields.io/badge/license-MIT-green.svg]]
 [[https://github.com/psf/black][https://img.shields.io/badge/Code%20Style-Black-black.svg]]
 [[https://pypi.org/project/sgg/][https://img.shields.io/pypi/v/sgg.svg]]
 
@@ -47,5 +48,5 @@ use the following command:
 sgg --title '$f(x) = x$ versus $f(x) = x^{2}$' -y '$f(x)$' -x '$x$' -s '-' ' --' -l '$f(x) = x$' '$f(x) = x^{2}$' -f file1.txt file2.txt -c 'darkorange' 'royalblue' --xmin 0  --dest out.png
 #+END_SRC
 
-The result are shown below:
+The result are shown below (If you are reading this file in PyPi you will be not able to see the png file, so go to the [[https://github.com/thiagotps/sgg][github repository]]):
 [[file:out.png]]
