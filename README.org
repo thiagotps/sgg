@@ -8,9 +8,9 @@
 This is a simple tool for creating graphs from the terminal. It reads files contaning two numeric columns
 and create a graph from it.
 * Install
-Just the usual python installation pattern:
+Just the usual python installation pattern (your python version should be *>= 3.8*)
 #+BEGIN_SRC bash
-pip3 install sgg
+pip3 install --user sgg
 #+END_SRC
 * Examples
 Consider two files:
