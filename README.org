@@ -1,0 +1,51 @@
+#+TITLE: Simple Graph Generator
+
+[[https://github.com/psf/black][https://img.shields.io/badge/Code%20Style-Black-black.svg]]
+[[https://pypi.org/project/sgg/][https://img.shields.io/pypi/v/sgg.svg]]
+
+* Description
+This is a simple tool for creating graphs from the terminal. It reads files contaning two numeric columns
+and create a graph from it.
+* Install
+Just the usual python installation pattern:
+#+BEGIN_SRC bash
+pip3 install sgg
+#+END_SRC
+* Examples
+Consider two files:
+#+CAPTION: file1.txt
+#+BEGIN_SRC text
+0 500
+1 550
+2 600
+3 650
+4 700
+5 750
+6 800
+7 850
+8 900
+9 950
+#+END_SRC
+
+#+CAPTION: file2.txt
+#+BEGIN_SRC text
+0 2
+1 4
+2 8
+3 16
+4 32
+5 64
+6 128
+7 256
+8 512
+9 1024
+#+END_SRC
+
+To create a graph comparing these two files, we can
+use the following command:
+#+BEGIN_SRC bash
+sgg --title '$f(x) = x$ versus $f(x) = x^{2}$' -y '$f(x)$' -x '$x$' -s '-' ' --' -l '$f(x) = x$' '$f(x) = x^{2}$' -f file1.txt file2.txt -c 'darkorange' 'royalblue' --xmin 0  --dest out.png
+#+END_SRC
+
+The result are shown below:
+[[file:out.png]]
