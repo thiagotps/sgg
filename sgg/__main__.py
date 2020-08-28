@@ -3,16 +3,14 @@
 import argparse
 from itertools import zip_longest
 from math import log10
+import importlib
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-
-def db(val):
-    """Just return the 10log10 applied to val"""
-    return 10 * log10(val)
+import sgg.ext
 
 
 def read_file(filename):
@@ -95,11 +93,17 @@ def main():
     )
 
     parser.add_argument(
-        "--db", action="store_true", help="Convert the y values to dB (10log10)."
-    )
-    parser.add_argument(
         "--dest", "-d", type=str, help="File to which print the png image.",
     )
+
+    parser.add_argument(
+        "--yt", type=str, help="Transformation to apply to the Y axis. Default is none."
+    )
+
+    parser.add_argument(
+        "--ext-file", type=str, help="The extension file to use. If not provided, use the builtin."
+    )
+
     args = parser.parse_args()
 
     plt.rc("text", usetex=True)
@@ -135,8 +139,15 @@ def main():
             break
 
         x, y = read_file(filename)
-        if args.db:
-            y = [db(val) for val in y]
+        if args.yt:
+            mod = sgg.ext
+            if args.ext_file:
+                spec = importlib.util.spec_from_file_location("module.name", args.ext_file)
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+
+            yt = mod.__dict__[args.yt]
+            y = [yt(val) for val in y]
 
         if style is None:
             style = "-"
