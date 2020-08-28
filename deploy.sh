@@ -13,11 +13,13 @@ python3 setup.py sdist bdist_wheel  || (echo "Failed to build package" && exit 2
 python3 -m pip install --user --upgrade twine || (echo "Failed to install twine" && exit 3)
 
 # Once installed, run Twine to upload all of the archives under dist:
-if [ "$1" = "deploy" ]
-then
+case "$1" in
+    "deploy")
     # This will upload to the pypi site.
-    python3 -m twine upload dist/* || (echo "Failed to upload to pypi" && exit 4)
-else
+    python3 -m twine upload dist/* || (echo "Failed to upload to pypi" && exit 4) ;;
+    "test")
     # This will upload to the test pypi:
-    python3 -m twine upload --repository testpypi dist/* || (echo "Failed to upload to test pypi" && exit 4)
-fi
+    python3 -m twine upload --repository testpypi dist/* || (echo "Failed to upload to test pypi" && exit 4) ;;
+    *)
+        echo "Error!!! You must provide deploy or test..." && exit 4
+esac

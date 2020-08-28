@@ -104,6 +104,13 @@ def main():
         "--ext-file", type=str, help="The extension file to use. If not provided, use the builtin."
     )
 
+    parser.add_argument(
+        "--yt-files",
+        nargs="+",
+        type=str,
+        help="The files to be whose Y axis will be transformed. Default is all of them.",
+    )
+
     args = parser.parse_args()
 
     plt.rc("text", usetex=True)
@@ -139,7 +146,7 @@ def main():
             break
 
         x, y = read_file(filename)
-        if args.yt:
+        if args.yt and ((not args.yt_files) or (filename in args.yt_files)):
             mod = sgg.ext
             if args.ext_file:
                 spec = importlib.util.spec_from_file_location("module.name", args.ext_file)
