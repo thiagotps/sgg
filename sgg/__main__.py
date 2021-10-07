@@ -128,8 +128,8 @@ def main():
     args = parser.parse_args()
 
     plt.rc("text", usetex=True)
-    plt.rc("text.latex", preamble=r"\usepackage{amsmath}")
-    # plt.rc("font", family="serif")
+    # TODO: It may be desirable to pass packages over the command line. Maybe in the next version.
+    plt.rcParams["text.latex.preamble"] += "\n" + "\n".join([r"\usepackage{amsmath}", r"\usepackage{amssymb}"])
     plt.rc("font", family="serif")
 
     plt.grid(True)
