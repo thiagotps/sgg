@@ -111,16 +111,31 @@ def main():
         help="The files to be whose Y axis will be transformed. Default is all of them.",
     )
 
+    parser.add_argument(
+        "--label-fontsize",
+        type=int,
+        default=20,
+        help="The font size of the xlabel and ylabel.",
+    )
+
+    parser.add_argument(
+        "--tick-fontsize",
+        type=int,
+        default=16,
+        help="The font size of numbers and stuff.",
+    )
+
     args = parser.parse_args()
 
     plt.rc("text", usetex=True)
     plt.rc("text.latex", preamble=r"\usepackage{amsmath}")
+    # plt.rc("font", family="serif")
     plt.rc("font", family="serif")
 
     plt.grid(True)
 
-    plt.xlabel(args.xlabel, fontsize=20)
-    plt.ylabel(args.ylabel, fontsize=20)
+    plt.xlabel(args.xlabel, fontsize=args.label_fontsize)
+    plt.ylabel(args.ylabel, fontsize=args.label_fontsize)
 
     if args.title:
         plt.title(args.title)
@@ -165,7 +180,7 @@ def main():
         handles.append(l)
 
     plt.legend(handles=handles, fontsize=16)
-    plt.tick_params(labelsize=16)
+    plt.tick_params(labelsize=args.tick_fontsize)
     plt.tight_layout()
 
     if args.eps_file:
